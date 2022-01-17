@@ -1,27 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100&display=swap');
-
 .App {
   height: 100vh;
   background: #e8d7f1;
   font-family: 'Montserrat', sans-serif;
-}
-
-.Toolbar {
-  height: 10vh;
-  width: 100vw;
-  position: fixed;
-  bottom: 0px;
-  background: #d9bddb;
-  display: flex;
-  place-items: center;
-}
-
-.Logo {
-  padding: 1vh;
-  height: 8vh;
-  width: 8vh;
-}
-
-.ToolbarText {
-  font-size: 1.5em;
 }

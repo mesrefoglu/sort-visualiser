@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap');
+
+.Toolbar {
+  height: 10vh;
+  background: #d9bddb;
+  display: flex;
+  place-items: center;
+}
+
+.ToolbarText {
+  font-size: 1.5em;
+}
