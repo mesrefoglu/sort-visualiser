@@ -30,22 +30,24 @@ function Toolbar() {
     const widthStr = (90.0 / total).toFixed(2) + "vw";
     for (let i = 0; i < total; i++) {
       arrElem.push(
-        React.createElement(
-          Element,
-          {
-            index: arr[i],
-            total: total,
-            widthStr: widthStr,
-            order: i,
-          },
-          ""
-        )
+        {i: arr[i], total: total, widthStr: widthStr}
       );
     }
     dragdrop = (
       <ul className="elements">
-        {arrElem.map((element) => {
-          return <li key={Math.random()}>{element}</li>;
+        {arrElem.map(({i, total, widthStr}, index) => {
+          console.log(i + " " + total + " " + widthStr + " " + index);
+          return <li key={Math.random()}>{
+            React.createElement(
+              Element,
+              {
+                i: i,
+                total: total,
+                widthStr: widthStr
+              },
+              ""
+            )
+          }</li>;
         })}
       </ul>
     );
