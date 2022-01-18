@@ -5,10 +5,12 @@ import Element from "../../body/element/Element";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./Toolbar.css";
 
 function Toolbar() {
   var array = [];
+  var arrElem = [];
 
   const generateArray = () => {
     var num = document.getElementById("num").value;
@@ -23,33 +25,64 @@ function Toolbar() {
     generateElements(array);
   };
 
+  function handleOnDragEnd(result) {
+    var items = Array.from(arrElem);
+    const [reorderedItem] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderedItem);
+    
+    arrElem = items.slice();
+  }
+
   function generateElements(arr) {
-    var arrElem = [];
+    arrElem = [];
     var dragdrop;
     const total = arr.length;
     const widthStr = (90.0 / total).toFixed(2) + "vw";
     for (let i = 0; i < total; i++) {
-      arrElem.push(
-        {i: arr[i], total: total, widthStr: widthStr}
-      );
+      arrElem.push({ i: arr[i], total: total, widthStr: widthStr });
     }
+
     dragdrop = (
-      <ul className="elements">
-        {arrElem.map(({i, total, widthStr}, index) => {
-          console.log(i + " " + total + " " + widthStr + " " + index);
-          return <li key={i}>{
-            React.createElement(
-              Element,
-              {
-                i: i,
-                total: total,
-                widthStr: widthStr
-              },
-              ""
-            )
-          }</li>;
-        })}
-      </ul>
+      <DragDropContext onDragEnd={handleOnDragEnd}>
+        <Droppable droppableId="elements" direction="horizontal">
+          {(provided) => (
+            <ul
+              className="elements"
+              {...provided.droppableProps}
+              ref={provided.innerRef}
+            >
+              {arrElem.map(({ i, total, widthStr }, index) => {
+                return (
+                  <Draggable
+                    key={i.toString()}
+                    draggableId={i.toString()}
+                    index={index}
+                  >
+                    {(provided) => (
+                      <li
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                        ref={provided.innerRef}
+                      >
+                        {React.createElement(
+                          Element,
+                          {
+                            i: i,
+                            total: total,
+                            widthStr: widthStr,
+                          },
+                          ""
+                        )}
+                      </li>
+                    )}
+                  </Draggable>
+                );
+              })}
+              {provided.placeholder}
+            </ul>
+          )}
+        </Droppable>
+      </DragDropContext>
     );
     ReactDOM.render(dragdrop, document.getElementById("holder"));
   }
