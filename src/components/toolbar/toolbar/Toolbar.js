@@ -32,7 +32,7 @@ function Toolbar() {
             event.preventDefault();
           }
         }}
-        style={{width: "2.5vw"}}
+        style={{width: "2.5em"}}
         maxLength = {3}
       />
       <Button id="generate-array" variant="" onClick={generateArray}>
