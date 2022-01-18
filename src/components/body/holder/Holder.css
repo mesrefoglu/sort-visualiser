@@ -1,11 +1,6 @@
 .Holder {
   position: relative;
-  right: 5vw;
   left: 5vw;
-  bottom: 0;
   top: 10vh;
   width: 90vw;
-  height: 80vh;
-  display: flex;
-  align-items: flex-end;
 }

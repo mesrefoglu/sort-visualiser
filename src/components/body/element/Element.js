@@ -1,7 +1,7 @@
 import React from 'react';
 import "./Element.css";
 
-function Element({index, total, widthStr}) {
+function Element({index, total, widthStr, order}) {
 
   const heightStr = (80 * (index + 1) / total).toFixed(2) + "vh";
 

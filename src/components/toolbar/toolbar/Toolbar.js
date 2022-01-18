@@ -8,7 +8,6 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import "./Toolbar.css";
 
 function Toolbar() {
-
   var array = [];
 
   const generateArray = () => {
@@ -26,26 +25,31 @@ function Toolbar() {
 
   function generateElements(arr) {
     var arrElem = [];
-    var reactfrag;
+    var dragdrop;
     const total = arr.length;
     const widthStr = (90.0 / total).toFixed(2) + "vw";
     for (let i = 0; i < total; i++) {
       arrElem.push(
         React.createElement(
           Element,
-          { index: arr[i], total: total, widthStr: widthStr },
+          {
+            index: arr[i],
+            total: total,
+            widthStr: widthStr,
+            order: i,
+          },
           ""
         )
       );
     }
-    reactfrag = (
-      <React.Fragment>
-        {arrElem.map((item) => (
-          <div key={Math.random()}>{item}</div>
-        ))}
-      </React.Fragment>
+    dragdrop = (
+      <ul className="elements">
+        {arrElem.map((element) => {
+          return <li key={Math.random()}>{element}</li>;
+        })}
+      </ul>
     );
-    ReactDOM.render(reactfrag, document.getElementById("holder"));
+    ReactDOM.render(dragdrop, document.getElementById("holder"));
   }
 
   function selectAlg(algStr) {
