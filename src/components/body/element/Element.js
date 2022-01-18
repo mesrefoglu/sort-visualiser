@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 import "./Element.css";
 
-function Element({i, total, widthStr}) {
-
-  const heightStr = (80 * (i + 1) / total).toFixed(2) + "vh";
+function Element({ i, total, widthStr }) {
+  // calculates the height based on it's "right" order (from small to big) and the total number of elements
+  const heightStr = ((80 * (i + 1)) / total).toFixed(2) + "vh";
 
   return (
-    <div className="Element" style={{width: widthStr, height: heightStr}} />
-  )
+    <div className="Element" style={{ width: widthStr, height: heightStr }} />
+  );
 }
 
 export default Element;
