@@ -1,14 +1,52 @@
 import React from "react";
+import ReactDOM from "react-dom";
 import Logo from "../logo/Logo";
+import Element from "../../body/element/Element";
 import Button from "react-bootstrap/Button";
 import Dropdown from "react-bootstrap/Dropdown";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import "./Toolbar.css";
 
 function Toolbar() {
+
+  var array = [];
+
   const generateArray = () => {
-    console.log("Array Will Be Generated");
+    var num = document.getElementById("num").value;
+    array = Array.from(Array(parseInt(num)).keys());
+
+    // Durstenfeld shuffle, https://stackoverflow.com/a/12646864/8620432
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+
+    generateElements(array);
   };
+
+  function generateElements(arr) {
+    var arrElem = [];
+    var reactfrag;
+    const total = arr.length;
+    const widthStr = (90.0 / total).toFixed(2) + "vw";
+    for (let i = 0; i < total; i++) {
+      arrElem.push(
+        React.createElement(
+          Element,
+          { index: arr[i], total: total, widthStr: widthStr },
+          ""
+        )
+      );
+    }
+    reactfrag = (
+      <React.Fragment>
+        {arrElem.map((item) => (
+          <div key={Math.random()}>{item}</div>
+        ))}
+      </React.Fragment>
+    );
+    ReactDOM.render(reactfrag, document.getElementById("holder"));
+  }
 
   function selectAlg(algStr) {
     document.getElementById("alg-select").innerHTML = algStr;
@@ -21,9 +59,7 @@ function Toolbar() {
   return (
     <div className="Toolbar">
       <Logo />
-      <div>
-        Number of elements:
-      </div>
+      <div>Number of elements:</div>
       <input
         type="text"
         id="num"
@@ -32,8 +68,8 @@ function Toolbar() {
             event.preventDefault();
           }
         }}
-        style={{width: "2.5em"}}
-        maxLength = {3}
+        style={{ width: "2.5em" }}
+        maxLength={3}
       />
       <Button id="generate-array" variant="" onClick={generateArray}>
         Generate Array
