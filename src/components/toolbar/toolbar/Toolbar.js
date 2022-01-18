@@ -37,7 +37,7 @@ function Toolbar() {
       <ul className="elements">
         {arrElem.map(({i, total, widthStr}, index) => {
           console.log(i + " " + total + " " + widthStr + " " + index);
-          return <li key={Math.random()}>{
+          return <li key={i}>{
             React.createElement(
               Element,
               {
