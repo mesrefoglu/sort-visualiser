@@ -6,7 +6,7 @@ function Element({index, total, widthStr}) {
   const heightStr = toString(1 + 80 * (index + 1) / total) + "vh";
 
   return (
-    <div style={{width: widthStr, height: heightStr}} />
+    <div className="Element" style={{width: widthStr, height: heightStr}} />
   )
 }
 
