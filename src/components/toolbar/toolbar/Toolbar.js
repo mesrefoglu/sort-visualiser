@@ -45,7 +45,7 @@ function Toolbar() {
         id="alg-select"
         variant=""
         title="Insertion Sort"
-        style={{ width: "10vw" }}
+        style={{ width: "12vw" }}
       >
         <Dropdown.Item href="#" onClick={() => selectAlg("Insertion Sort")}>
           Insertion Sort
@@ -61,7 +61,7 @@ function Toolbar() {
         id="normal-reverse"
         variant=""
         title="Normal"
-        style={{ width: "7vw" }}
+        style={{ width: "9vw" }}
       >
         <Dropdown.Item href="#" onClick={() => selectNR("Normal")}>
           Normal
