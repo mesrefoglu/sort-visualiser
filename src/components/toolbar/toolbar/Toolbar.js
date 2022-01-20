@@ -57,9 +57,11 @@ function generateElements(array) {
   const total = array.length;
   // calculates the width based on the number of elements
   const widthStr = (90.0 / total).toFixed(2) + "vw";
+  console.log(array);
   for (let i = 0; i < total; i++) {
     arrayElem.push({ i: array[i], total: total, widthStr: widthStr });
   }
+  console.log(arrayElem);
 
   // creates the whole object to be added to the html
   dragdrop = (
