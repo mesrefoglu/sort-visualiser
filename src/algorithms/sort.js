@@ -12,7 +12,6 @@ export function swap(array, i, j) {
 function sort(array, alg, nr, ms) {
   switch (alg) {
     case "Selection Sort":
-      console.log(array);
       selectionSort(array, nr, ms);
       break;
     case "Bubble Sort":

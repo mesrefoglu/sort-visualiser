@@ -37,31 +37,13 @@ const generateArray = () => {
   generateElements(array);
 };
 
-// changes the elements in the list
-function handleOnDragEnd(result) {
-  const items = Array.from(arrayElem);
-  const [reorderedItem] = items.splice(result.source.index, 1);
-  items.splice(result.destination.index, 0, reorderedItem);
-  arrayElem = items.slice();
-
-  const numbers = Array.from(array);
-  const [reorderedNumber] = numbers.splice(result.source.index, 1);
-  numbers.splice(result.destination.index, 0, reorderedNumber);
-  array = numbers.slice();
-}
-
 // generates the UI elements (rectangles) on the screen with the array given
 function generateElements(array) {
-  arrayElem = [];
+  arrayElem = [...array];
   var dragdrop;
   const total = array.length;
   // calculates the width based on the number of elements
   const widthStr = (90.0 / total).toFixed(2) + "vw";
-  console.log(array);
-  for (let i = 0; i < total; i++) {
-    arrayElem.push({ i: array[i], total: total, widthStr: widthStr });
-  }
-  console.log(arrayElem);
 
   // creates the whole object to be added to the html
   dragdrop = (
@@ -73,7 +55,7 @@ function generateElements(array) {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {arrayElem.map(({ i, total, widthStr }, index) => {
+            {arrayElem.map((i, index) => {
               return (
                 <Draggable
                   key={i.toString()}
@@ -110,6 +92,19 @@ function generateElements(array) {
 
   //adds it to the html
   ReactDOM.render(dragdrop, document.getElementById("holder"));
+}
+
+// changes the elements in the list
+function handleOnDragEnd(result) {
+  const items = Array.from(arrayElem);
+  const [reorderedItem] = items.splice(result.source.index, 1);
+  items.splice(result.destination.index, 0, reorderedItem);
+  arrayElem = items.slice();
+
+  const numbers = Array.from(array);
+  const [reorderedNumber] = numbers.splice(result.source.index, 1);
+  numbers.splice(result.destination.index, 0, reorderedNumber);
+  array = numbers.slice();
 }
 
 // changes algorithm

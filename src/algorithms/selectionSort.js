@@ -13,10 +13,9 @@ function selectionSort(arr, nr, ms) {
 function selectionsort() {
   var j = 0, min_idx = 0;
 
-  console.log(i);
-
   if(i === array.length - 1) {
     clearTimeout(interval);
+    updateArray(array);
     i = 0;
     return;
   }
@@ -32,8 +31,6 @@ function selectionsort() {
   [array[i], array[min_idx]] = [array[min_idx], array[i]];
 
   i++;
-
-  updateArray(array);
 }
 
 export default selectionSort;
