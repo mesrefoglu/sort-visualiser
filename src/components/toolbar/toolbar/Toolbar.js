@@ -17,6 +17,7 @@ var nr = "Normal";
 
 export function updateArray(newArr) {
   array = [...newArr];
+  arrayElem = [...newArr];
 }
 
 // generates an array with the entered amount of numbers in random order
@@ -32,7 +33,7 @@ const generateArray = () => {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
-
+  console.log(array);
   //generates elements (on screen) with the random array
   generateElements(array);
 };
@@ -45,6 +46,7 @@ function generateElements(array) {
   // calculates the width based on the number of elements
   const widthStr = (90.0 / total).toFixed(2) + "vw";
 
+  console.log(array, arrayElem);
   // creates the whole object to be added to the html
   dragdrop = (
     <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -56,6 +58,7 @@ function generateElements(array) {
             ref={provided.innerRef}
           >
             {arrayElem.map((i, index) => {
+              console.log(i, total, widthStr);
               return (
                 <Draggable
                   key={i.toString()}

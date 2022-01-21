@@ -1,6 +1,6 @@
 import selectionSort from './selectionSort'
 
-export function swap(array, i, j) {
+export function swap(i, j) {
   if(i === j) return;
   
   const temp = document.getElementById("e" + i).childNodes[0].style.height;

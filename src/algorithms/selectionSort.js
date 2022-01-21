@@ -11,6 +11,7 @@ function selectionSort(arr, nr, ms) {
 }
 
 function selectionsort() {
+  console.log(array);
   var j = 0, min_idx = 0;
 
   if(i === array.length - 1) {
@@ -27,7 +28,7 @@ function selectionsort() {
   }
 
   // Swap the found minimum element with the first element
-  swap(array, min_idx, i);
+  swap(min_idx, i);
   [array[i], array[min_idx]] = [array[min_idx], array[i]];
 
   i++;
