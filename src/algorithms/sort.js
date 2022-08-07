@@ -1,8 +1,8 @@
 import selectionSort from './selectionSort'
+import bubbleSort from './bubbleSort'
 
 export function swap(i, j) {
   if(i === j) return;
-  
   const temp = document.getElementById("e" + i).childNodes[0].style.height;
   document.getElementById("e" + i).childNodes[0].style.height =
     document.getElementById("e" + j).childNodes[0].style.height;
@@ -15,6 +15,7 @@ function sort(array, alg, nr, ms) {
       selectionSort(array, nr, ms);
       break;
     case "Bubble Sort":
+      bubbleSort(array, nr, ms);
       break;
     case "Insertion Sort":
       break;

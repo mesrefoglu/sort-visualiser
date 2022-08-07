@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ReactDOM from "react-dom";
 import Logo from "../logo/Logo";
 import Element from "../../body/element/Element";
@@ -10,18 +10,19 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import "./Toolbar.css";
 
 var array = [];
-var arrayElem = [];
+var array2 = [];
 
 var alg = "Selection Sort";
 var nr = "Normal";
+var ms = 50;
 
 export function updateArray(newArr) {
   array = [...newArr];
-  arrayElem = [...newArr];
+  array2 = [...newArr];
 }
 
 // generates an array with the entered amount of numbers in random order
-const generateArray = () => {
+function generateArray() {
   var num = 0;
   if (document.getElementById("num").value !== "") {
     num = document.getElementById("num").value;
@@ -33,20 +34,18 @@ const generateArray = () => {
     const j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
-  console.log(array);
   //generates elements (on screen) with the random array
   generateElements(array);
-};
+}
 
 // generates the UI elements (rectangles) on the screen with the array given
 function generateElements(array) {
-  arrayElem = [...array];
+  array2 = [...array];
   var dragdrop;
   const total = array.length;
   // calculates the width based on the number of elements
   const widthStr = (90.0 / total).toFixed(2) + "vw";
 
-  console.log(array, arrayElem);
   // creates the whole object to be added to the html
   dragdrop = (
     <DragDropContext onDragEnd={handleOnDragEnd}>
@@ -57,12 +56,11 @@ function generateElements(array) {
             {...provided.droppableProps}
             ref={provided.innerRef}
           >
-            {arrayElem.map((i, index) => {
-              console.log(i, total, widthStr);
+            {array2.map((i, index) => {
               return (
                 <Draggable
-                  key={i.toString()}
-                  draggableId={i.toString()}
+                  key={index.toString()}
+                  draggableId={index.toString()}
                   index={index}
                 >
                   {(provided) => (
@@ -78,8 +76,7 @@ function generateElements(array) {
                           i: i,
                           total: total,
                           widthStr: widthStr,
-                        },
-                        ""
+                        }
                       )}
                     </li>
                   )}
@@ -92,6 +89,8 @@ function generateElements(array) {
       </Droppable>
     </DragDropContext>
   );
+  
+  console.log(array);
 
   //adds it to the html
   ReactDOM.render(dragdrop, document.getElementById("holder"));
@@ -99,10 +98,10 @@ function generateElements(array) {
 
 // changes the elements in the list
 function handleOnDragEnd(result) {
-  const items = Array.from(arrayElem);
+  const items = Array.from(array2);
   const [reorderedItem] = items.splice(result.source.index, 1);
   items.splice(result.destination.index, 0, reorderedItem);
-  arrayElem = items.slice();
+  array2 = items.slice();
 
   const numbers = Array.from(array);
   const [reorderedNumber] = numbers.splice(result.source.index, 1);
@@ -124,7 +123,12 @@ function selectNR(nR) {
 
 // starts sorting
 function sortButton() {
-  sort(array, alg, nr, 8);
+  var num = 50;
+  if (document.getElementById("speed").value !== "") {
+    num = document.getElementById("speed").value;
+  }
+  ms = num;
+  sort(array, alg, nr, ms);
 }
 
 function Toolbar() {
@@ -244,6 +248,21 @@ function Toolbar() {
           Reverse
         </Dropdown.Item>
       </DropdownButton>
+
+      {/* Input (Text And) Bar */}
+      <div>Speed:</div>
+      <input
+        type="text"
+        id="speed"
+        onKeyPress={(event) => {
+          if (!/[0-9]/.test(event.key)) {
+            event.preventDefault();
+          }
+        }}
+        style={{ width: "2.5em" }}
+        maxLength={3}
+      />
+      <div>ms</div>
 
       {/* Seperator Line */}
       <div
