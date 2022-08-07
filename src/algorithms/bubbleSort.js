@@ -4,11 +4,11 @@ import { updateArray } from '../components/toolbar/toolbar/Toolbar'
 var array = [];
 var i = 0;
 var interval;
-var nr;
+var isNormal;
 
 function bubbleSort(arr, nR, ms) {
   array = [...arr];
-  nr = nR;
+  isNormal = (nR === "Normal");
   interval = setInterval(bubbleSortIteration, ms);
 }
 
@@ -22,7 +22,7 @@ function bubbleSortIteration() {
   }
 
   for(var j = 0; j < array.length - i - 1; j++) {
-    if (array[j] > array[j + 1]) {
+    if (isNormal ? array[j] > array[j + 1] : array[j] < array[j + 1]) {
       swap(j, j + 1);
       [array[j], array[j + 1]] = [array[j + 1], array[j]];
     }
