@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom";
 import Logo from "../logo/Logo";
 import Element from "../../body/element/Element";
@@ -12,6 +12,7 @@ import "./Toolbar.css";
 var array = [];
 var array2 = [];
 
+var num = 0;
 var alg = "Selection Sort";
 var nr = "Normal";
 var ms = 50;
@@ -23,7 +24,6 @@ export function updateArray(newArr) {
 
 // generates an array with the entered amount of numbers in random order
 function generateArray() {
-  var num = 0;
   if (document.getElementById("num").value !== "") {
     num = document.getElementById("num").value;
   }
