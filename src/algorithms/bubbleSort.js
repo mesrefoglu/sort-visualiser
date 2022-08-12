@@ -14,14 +14,14 @@ function bubbleSort(arr, nR, ms) {
 
 function bubbleSortIteration() {
 
-  if(i === array.length) {
+  if (i === array.length) {
     clearTimeout(interval);
     updateArray(array);
     i = 0;
     return;
   }
 
-  for(var j = 0; j < array.length - i - 1; j++) {
+  for (var j = 0; j < array.length - i - 1; j++) {
     if (isNormal ? array[j] > array[j + 1] : array[j] < array[j + 1]) {
       swap(j, j + 1);
       [array[j], array[j + 1]] = [array[j + 1], array[j]];

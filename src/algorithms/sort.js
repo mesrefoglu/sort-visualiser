@@ -2,12 +2,13 @@ import selectionSort from './selectionSort'
 import bubbleSort from './bubbleSort'
 import insertionSort from './insertionSort'
 import mergeSort from './mergeSort'
+import quickSort from './quickSort'
 
 var n = 0;
 
 // swaps i and j
 export function swap(i, j) {
-  if(i === j) return;
+  if (i === j) return;
   const temp = document.getElementById("e" + i).childNodes[0].style.height;
   document.getElementById("e" + i).childNodes[0].style.height =
     document.getElementById("e" + j).childNodes[0].style.height;
@@ -35,6 +36,7 @@ function sort(array, alg, nr, ms) {
       mergeSort(array, nr, ms);
       break;
     case "Quicksort":
+      quickSort(array, nr, ms);
       break;
     case "Heap Sort":
       break;

@@ -16,7 +16,7 @@ function insertionSort(arr, nR, ms) {
 
 function insertionSortIteration() {
 
-  if(i === array.length) {
+  if (i === array.length) {
     clearTimeout(interval);
     updateArray(array);
     i = 1;
@@ -26,12 +26,11 @@ function insertionSortIteration() {
   key = array[i];
   j = i - 1;
 
-  while (j >= 0 && isNormal ? array[j] > key : array[j] < key)
-  {
+  while (j >= 0 && isNormal ? array[j] > key : array[j] < key) {
     swap(j + 1, j);
     [array[j], array[j + 1]] = [array[j + 1], array[j]];
     j = j - 1;
-  }  
+  }
 
   i++;
 }

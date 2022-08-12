@@ -15,7 +15,7 @@ function selectionSort(arr, nR, ms) {
 function selectionSortIteration() {
   var j = 0, min_idx = 0;
 
-  if(i === array.length - 1) {
+  if (i === array.length - 1) {
     clearTimeout(interval);
     updateArray(array);
     i = 0;
