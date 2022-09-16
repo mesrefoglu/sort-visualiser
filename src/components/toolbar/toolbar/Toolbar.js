@@ -70,14 +70,11 @@ function generateElements(array) {
                       {...provided.dragHandleProps}
                       ref={provided.innerRef}
                     >
-                      {React.createElement(
-                        Element,
-                        {
-                          i: i,
-                          total: total,
-                          widthStr: widthStr,
-                        }
-                      )}
+                      {React.createElement(Element, {
+                        i: i,
+                        total: total,
+                        widthStr: widthStr,
+                      })}
                     </li>
                   )}
                 </Draggable>
@@ -89,7 +86,7 @@ function generateElements(array) {
       </Droppable>
     </DragDropContext>
   );
-  
+
   console.log(array);
 
   //adds it to the html
@@ -187,9 +184,9 @@ function Toolbar() {
           Merge Sort
         </Dropdown.Item>
         <Dropdown.Item onClick={() => selectAlg("Quicksort")}>
-          Quicksort
+          Quicksort (WIP)
         </Dropdown.Item>
-        <Dropdown.Item onClick={() => selectAlg("Heap Sort")}>
+        {/* <Dropdown.Item onClick={() => selectAlg("Heap Sort")}>
           Heap Sort
         </Dropdown.Item>
         <Dropdown.Item onClick={() => selectAlg("Counting Sort")}>
@@ -233,7 +230,7 @@ function Toolbar() {
         </Dropdown.Item>
         <Dropdown.Item onClick={() => selectAlg("Bogosort")}>
           Bogosort
-        </Dropdown.Item>
+        </Dropdown.Item> */}
       </DropdownButton>
 
       {/* Normal/Reverse Chooser Dropdown */}

@@ -1,8 +1,8 @@
-import selectionSort from './selectionSort'
-import bubbleSort from './bubbleSort'
-import insertionSort from './insertionSort'
-import mergeSort from './mergeSort'
-import quickSort from './quickSort'
+import selectionSort from "./selectionSort";
+import bubbleSort from "./bubbleSort";
+import insertionSort from "./insertionSort";
+import mergeSort from "./mergeSort";
+import quickSort from "./quickSort";
 
 var n = 0;
 
@@ -17,7 +17,8 @@ export function swap(i, j) {
 
 // set i's value to j (not j in array, but j in sorted version. for example j = 0 means set i to smallest element)
 export function set(i, j) {
-  document.getElementById("e" + i).childNodes[0].style.height = ((80 * (j + 1)) / n).toFixed(2) + "vh";
+  document.getElementById("e" + i).childNodes[0].style.height =
+    ((80 * (j + 1)) / n).toFixed(2) + "vh";
 }
 
 function sort(array, alg, nr, ms) {
@@ -36,7 +37,7 @@ function sort(array, alg, nr, ms) {
       mergeSort(array, nr, ms);
       break;
     case "Quicksort":
-      quickSort(array, nr, ms);
+      //quickSort(array, nr, ms);
       break;
     case "Heap Sort":
       break;
