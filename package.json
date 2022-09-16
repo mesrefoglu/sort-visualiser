@@ -1,8 +1,8 @@
 {
+  "homepage": "https://qedized.github.io/sort-visualiser",
   "name": "sort-visualiser",
   "version": "0.7.0",
   "private": true,
-  "homepage": "https://qedized.github.io",
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.1",
     "@testing-library/react": "^12.1.2",
